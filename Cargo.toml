@@ -1,0 +1,11 @@
+[package]
+name = "game-programming"
+version = "0.1.0"
+authors = ["Matthew J. Berger <matthewberger@nevada.unr.edu>"]
+
+[dependencies]
+gl = "0.10.0"
+
+[dependencies.sdl2]
+version = "0.31.0"
+features = ["bundled", "static-link"]
