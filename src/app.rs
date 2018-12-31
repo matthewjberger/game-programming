@@ -1,7 +1,7 @@
 extern crate gl;
 extern crate sdl2;
 
-use sdl2::{
+pub use app::sdl2::{
     pixels::Color,
     render::Canvas,
     video::Window,

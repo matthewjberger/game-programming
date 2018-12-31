@@ -9,3 +9,11 @@ gl = "0.10.0"
 [dependencies.sdl2]
 version = "0.31.0"
 features = ["bundled", "static-link"]
+
+[lib]
+name = "core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pong"
+path = "src/bin/pong.rs"
