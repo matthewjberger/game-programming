@@ -1,11 +1,12 @@
 extern crate sdl2;
 extern crate gl;
 
-mod core;
-use core::Application;
+mod app;
+
+use app::{Application2D, Application3D};
 
 fn main() {
-    core::Application::run(handle_events, update, render);
+    app::Application3D::run(handle_events, update, render);
 }
 
 fn handle_events(_event: sdl2::event::Event) {
