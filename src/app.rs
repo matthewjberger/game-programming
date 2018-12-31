@@ -1,14 +1,18 @@
 extern crate gl;
 extern crate sdl2;
 
-use sdl2::pixels::Color;
+use sdl2::{
+    pixels::Color,
+    render::Canvas,
+    video::Window,
+};
 
 pub struct Application2D;
 pub struct Application3D;
 
 /// An SDL2 application that uses the SDL2 Renderer for 2D drawing
 impl Application2D {
-    pub fn run(handle_events: fn(sdl2::event::Event), update: fn(), render: fn()) {
+    pub fn run(handle_events: fn(sdl2::event::Event), update: fn(), render: fn(canvas: &mut Canvas<Window>)) {
         let sdl = sdl2::init().unwrap();
         let video_subsystem = sdl.video().unwrap();
         let window = video_subsystem
@@ -32,7 +36,7 @@ impl Application2D {
             }
 
             update();
-            render();
+            render(&mut canvas);
             canvas.present();
         }
     }
@@ -40,10 +44,10 @@ impl Application2D {
 
 /// An SDL2 application that sets up an OpenGL context for 3D rendering
 impl Application3D {
-    pub fn run(handle_events: fn(sdl2::event::Event), update: fn(), render: fn()) {
+    pub fn run(handle_events: fn(sdl2::event::Event), update: fn(), render: fn(window: &mut Window)) {
         let sdl = sdl2::init().unwrap();
         let video_subsystem = sdl.video().unwrap();
-        let window = video_subsystem
+        let mut window = video_subsystem
             .window("Game", 900, 700)
             .opengl()
             .resizable()
@@ -64,7 +68,7 @@ impl Application3D {
             }
 
             update();
-            render();
+            render(&mut window);
             window.gl_swap_window();
         }
     }
