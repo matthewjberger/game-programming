@@ -20,7 +20,6 @@ impl Application2D {
         let mut canvas = window.into_canvas().build().unwrap();
         canvas.set_draw_color(Color::RGB(0, 0, 255));
         canvas.clear();
-        canvas.present();
 
         let mut event_pump = sdl.event_pump().unwrap();
         'main: loop {
@@ -34,6 +33,7 @@ impl Application2D {
 
             update();
             render();
+            canvas.present();
         }
     }
 }
