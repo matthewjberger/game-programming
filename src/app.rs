@@ -9,6 +9,9 @@ pub struct Application3D;
 /// An SDL2 application that uses the SDL2 Renderer for 2D drawing
 impl Application2D {
     pub fn run(
+        caption: &str,
+        screen_width: u32,
+        screen_height: u32,
         handle_events: fn(sdl2::event::Event),
         update: fn(),
         render: fn(canvas: &mut Canvas<Window>),
@@ -16,7 +19,7 @@ impl Application2D {
         let sdl = sdl2::init().unwrap();
         let video_subsystem = sdl.video().unwrap();
         let window = video_subsystem
-            .window("Game", 900, 700)
+            .window(caption, screen_width, screen_height)
             .resizable()
             .build()
             .unwrap();
@@ -50,6 +53,9 @@ impl Application2D {
 /// An SDL2 application that sets up an OpenGL context for 3D rendering
 impl Application3D {
     pub fn run(
+        caption: &str,
+        screen_width: u32,
+        screen_height: u32,
         handle_events: fn(sdl2::event::Event),
         update: fn(),
         render: fn(window: &mut Window),

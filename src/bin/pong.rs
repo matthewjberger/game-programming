@@ -5,8 +5,13 @@ extern crate sdl2;
 use sdl2::rect::Rect;
 use core::app::{Application2D, Canvas, Color, Window};
 
+struct Vector2 {
+    x: i32,
+    y: i32,
+}
+
 fn main() {
-    Application2D::run(handle_events, update, render);
+    Application2D::run("Pong!", 600, 800, handle_events, update, render);
 }
 
 fn handle_events(_event: sdl2::event::Event) {}
